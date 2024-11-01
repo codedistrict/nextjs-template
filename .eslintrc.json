@@ -1,0 +1,102 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:jest/recommended"
+  ],
+  "overrides": [
+    {
+      "files": ["**/*.spec.ts", "**/*.spec.tsx", "**/*.test.tsx"],
+      "env": {
+        "jest": true
+      }
+    }
+  ],
+  "rules": {
+    "react-hooks/exhaustive-deps": 2,
+    "react/prop-types": 2,
+    "no-await-in-loop": 2,
+    "no-empty": 2, // no empty blocks like catch(err){}
+    "no-useless-escape": 0, // disallows unnecessary escape characters
+    "no-debugger": 2,
+    "no-console": 1,
+    "no-unused-vars": [
+      0
+    ],
+    "filenames-simple/naming-convention": [
+      2,
+      {
+        "rule": "camelCase",
+        "excepts": ["^(?!src/app).*"]
+        // "excepts":["global-error.tsx"]
+      }
+    ],
+    "react/react-in-jsx-scope": 0,
+    "react/sort-comp": [
+      2,
+      {
+        "order": [
+          "static-methods",
+          "state", // Initialize State Variables
+          "refs", // Create Refs
+          "instance-variables", // Use this for hooks and other instance variables
+          "lifecycle", // useEffect can be considered part of lifecycle
+          "everything-else", // This can include const/var/let specific to Component
+          "render"
+        ],
+        "groups": {
+          "lifecycle": [
+            "componentDidMount",
+            "shouldComponentUpdate",
+            "componentDidUpdate",
+            "componentWillUnmount"
+            // Other lifecycle methods can be added here
+          ]
+        }
+      }
+    ],
+    "simple-import-sort/imports": 2,
+    "simple-import-sort/exports": 2
+    // "eslint-plugin-eslint-plugin/order-in-components": [
+    //   "error",
+    //   {
+    //     "groups": [
+    //       "state",
+    //       "refs",
+    //       "hooks",
+    //       "useEffects",
+    //       "constants",
+    //       "functions",
+    //       "render"
+    //     ],
+    //     "alphabetize": {
+    //       "order": "asc",
+    //       "caseInsensitive": true
+    //     }
+    //   }
+    // ]
+  },
+  "plugins": [
+    "jest",
+    "eslint-plugin-jest",
+    "filenames-simple",
+    "simple-import-sort"
+  ],
+  "env": {
+    "jest/globals": true,
+    "jest": true
+  },
+  "settings": {
+    "jest": {
+      "globalAliases": {
+        "describe": ["context"],
+        "fdescribe": ["fcontext"],
+        "xdescribe": ["xcontext"],
+        "it": ["context"],
+        "expect": ["context"],
+        "afterEach": ["context"]
+      }
+    }
+  }
+}

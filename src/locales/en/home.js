@@ -1,0 +1,26 @@
+const home = {
+  access: 'Access',
+  account: 'Account',
+  admin: 'Administrator',
+  b_cards: 'B-cards',
+  disk_usage: 'Disk Usage',
+  home: 'Home',
+  inquiries: 'inquiries',
+  invites: 'invites',
+  messages: 'messages',
+  network: 'Network',
+  orders: 'orders',
+  posts: 'posts',
+  proposals: 'proposals',
+  purchases: 'purchases',
+  refer_a_friend: 'Refer-a-friend',
+  replies: 'replies',
+  special_offers: 'special offers',
+  super_admin: 'Super admin',
+  system_notice: 'System notices',
+  today_tasks: "Today's tasks",
+  user: 'User',
+  welcome: 'Welcome to 2Global',
+};
+
+export default home;

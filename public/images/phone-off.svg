@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="23.414" height="23.414" viewBox="0 0 23.414 23.414">
+  <g id="phone-off" transform="translate(0.707 0.707)">
+    <path id="Shape" d="M17.888,19.9c-.06,0-.12,0-.179-.008a19.88,19.88,0,0,1-8.63-3.07,19.413,19.413,0,0,1-3.33-2.67l2.82-2.84a16.038,16.038,0,0,0,3.41,2.6l1.27-1.27a2,2,0,0,1,2.11-.45,12.826,12.826,0,0,0,2.81.7,2.006,2.006,0,0,1,1.72,2v3a2,2,0,0,1-2,2.008ZM3.078,10.81h0A19.892,19.892,0,0,1,.008,2.18,2,2,0,0,1,2,0h3.02A2.009,2.009,0,0,1,7,1.72a12.826,12.826,0,0,0,.7,2.81,2.006,2.006,0,0,1-.45,2.11L5.978,7.91l-2.9,2.9Z" transform="translate(1.112 1)" fill="none" stroke="#3bc1cf" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+    <path id="Shape-2" data-name="Shape" d="M22,0,0,22" fill="none" stroke="#3bc1cf" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+  </g>
+</svg>

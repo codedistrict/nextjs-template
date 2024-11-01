@@ -1,0 +1,13 @@
+# Ignore specific files
+.next
+node_modules
+
+# Ignore all HTML files
+*.html
+
+# Ignore all JSON files
+*.json
+
+# Ignore specific directories
+public/
+styles/

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18.207" height="16.207" viewBox="0 0 18.207 16.207">
+  <g id="check-square" transform="translate(0.5 0.707)">
+    <path id="Shape" d="M0,8l3,3L14,0" transform="translate(3)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+    <path id="Shape-2" data-name="Shape" d="M15,7.5v5.833A1.667,1.667,0,0,1,13.333,15H1.667A1.667,1.667,0,0,1,0,13.333V1.667A1.667,1.667,0,0,1,1.667,0h9.167" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+  </g>
+</svg>
