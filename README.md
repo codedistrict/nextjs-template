@@ -1,3 +1,141 @@
+# Code Setup
+## Pre requisite
+
+- Install and setup Git
+- Install nvm
+- Install Node 20.x.x version via nvm.
+
+```
+# list of installed versions of node
+$ nvm list
+
+# Install a specific node version
+$ nvm install [version e.g 20.x.x]
+
+# Use that installed node version
+$ nvm use [version e.g 20.x.x]
+
+# Uninstall a node version
+$ nvm uninstall [version e.g 20.x.x]
+```
+
+## Installation
+
+### Create env
+```
+$ cp .env.example .env
+or
+$ touch .env
+```
+
+### Dependency Manager
+Install Dependency Manager
+```
+npm install yarn
+```
+
+Set yarn to a stable version
+```
+yarn set version stable
+```
+
+Install dependencies
+```
+yarn install
+```
+
+Start development dependencies,
+```
+yarn dev
+```
+
+Create Production Build
+```
+yarn build
+```
+
+To preview yoour build locally
+```
+yarn start
+```
+
+### Amplify App Creation
+- Goto your AWS Account
+- Create an Amplify App in AWS Amplify Studio
+- Copy the pull command containing appId
+
+### Amplify Setup
+
+- Install the Amplify CLI globally
+
+```
+npm install -g @aws-amplify/cli
+```
+
+- Run: `amplify pull --appId $APP_ID --envName dev` to pull environment set on backend
+
+**_Note_**: $APP_ID should be taken from AWS Amplify Studio backend environment
+
+In some point, it will ask you for the next information:
+
+```console
+? What javascript framework are you using: react
+? Source Directory Path:  .
+? Distribution Directory Path: .next
+? Build Command:  npm run build
+? Start Command: npm run start
+```
+
+After successful pull
+
+- Run: `amplify pull` to pull everything from Amplify backend and generate aws-exports file
+
+Once done, you should find aws-exports.js containing the config at the root of the project.
+
+## Braintree Payment Gateway Integration
+
+Payment integration is carried out by using the custom component BraintreePayment. It's in charge of communicating with the local server and Braintree server to perform transactions (payments or subscription to plans). For a quick reference of the steps followed to perform these transactions, here is a [quick overview](https://developer.paypal.com/braintree/docs/start/hello-client).
+
+```
+<BraintreePayment
+  ref={paymentRef}
+  customerId={props.customerId ?? ""}
+  amount={(plan?.price ?? 0) * 12}
+  subscribeToPlan={plan?.type}
+/>
+```
+
+- ref is used (with the help of the useRef hook) to access the submitForm function within the component. The component doesn't show a submit button. At the moment of writing, registration had payment gateway form included with another form. For this reason, the registration button is making the call for actual payment. This payment returns a promise with the success or failure result.
+- customerId is needed for adding a customer to a plan. This customerId was fetched from Braintree at registration after email verification stage.
+- amount is a required field to provide the transaction amount.
+- subscribeToPlan is an optional field. If used, the component will add the customer to a subscription plan on Braintree. If absent, the component will issue a normal payment transaction.
+
+### Env Variables
+
+In addition to enviornment variables mentioned in **Braintree Configuration** section there are more variable mentioned in .env.example which needs to be set to make the app work
+
+
+```
+SD_URL
+CLASSIFICATION_URL
+
+```
+### Testing
+
+In order to test the payment gateway page, here is [a page](https://developer.paypal.com/braintree/docs/reference/general/testing#test-value-4000111111111115) that gives you many cards to test.
+
+### Braintree Configuration
+
+In order to provide braintree with its configuration, create a local root file `.env.local` with the following keys that you get from Braintree console:
+
+```
+MERCHANT_ID
+PRIVATE_KEY
+PUBLIC_KEY
+```
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
 ## Coding Guidelines
 
 ### File Naming
@@ -162,74 +300,3 @@ describe("getFilteredUsers", () => {
 
 ℹ️ For more infomation check the [Jest Docs](https://jestjs.io/docs/getting-started) and [React testing library Docs](https://testing-library.com/docs/queries/about/#screen)
 
-## Braintree Payment Gateway Integration
-
-Payment integration is carried out by using the custom component BraintreePayment. It's in charge of communicating with the local server and Braintree server to perform transactions (payments or subscription to plans). For a quick reference of the steps followed to perform these transactions, here is a [quick overview](https://developer.paypal.com/braintree/docs/start/hello-client).
-
-```
-<BraintreePayment
-  ref={paymentRef}
-  customerId={props.customerId ?? ""}
-  amount={(plan?.price ?? 0) * 12}
-  subscribeToPlan={plan?.type}
-/>
-```
-
-- ref is used (with the help of the useRef hook) to access the submitForm function within the component. The component doesn't show a submit button. At the moment of writing, registration had payment gateway form included with another form. For this reason, the registration button is making the call for actual payment. This payment returns a promise with the success or failure result.
-- customerId is needed for adding a customer to a plan. This customerId was fetched from Braintree at registration after email verification stage.
-- amount is a required field to provide the transaction amount.
-- subscribeToPlan is an optional field. If used, the component will add the customer to a subscription plan on Braintree. If absent, the component will issue a normal payment transaction.
-
-### Env Variables
-
-In addition to enviornment variables mentioned in **Braintree Configuration** section there are more variable mentioned in .env.example which needs to be set to make the app work
-
-
-```
-SD_URL
-CLASSIFICATION_URL
-
-```
-### Testing
-
-In order to test the payment gateway page, here is [a page](https://developer.paypal.com/braintree/docs/reference/general/testing#test-value-4000111111111115) that gives you many cards to test.
-
-### Braintree Configuration
-
-In order to provide braintree with its configuration, create a local root file `.env.local` with the following keys that you get from Braintree console:
-
-```
-MERCHANT_ID
-PRIVATE_KEY
-PUBLIC_KEY
-```
-
----
-
-## Amplify Setup
-
-- Install the Amplify CLI globally
-
-```
-npm install -g @aws-amplify/cli
-```
-
-- Run: `amplify pull --appId $APP_ID --envName dev` to pull environment set on backend
-
-**_Note_**: $APP_ID should be taken from AWS Amplify Studio backend environment
-
-In some point, it will ask you for the next information:
-
-```console
-? What javascript framework are you using: react
-? Source Directory Path:  .
-? Distribution Directory Path: .next
-? Build Command:  npm run build
-? Start Command: npm run start
-```
-
-After successful pull
-
-- Run: `amplify pull` to pull everything from Amplify backend and generate aws-exports file
-
-Once done, you should find aws-exports.js containing the config at the root of the project.
